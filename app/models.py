@@ -26,6 +26,11 @@ class Cliente(models.Model):
     def __str__(self):
         return f'{self.id} - {self.nome} {self.sobrenome} - Ativo? {self.ativo}'
 
+class Hospedagem(models.Model):
+    nome = models.CharField(max_length=100, null=True, blank=True)
+    
+    def __str__(self):
+        return f'{self.id} - {self.nome}'
 
 class Dominio(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
@@ -33,6 +38,13 @@ class Dominio(models.Model):
     donoid = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='DonoId')  # Field name made lowercase.
     ativo = models.CharField(db_column='Ativo', max_length=50, db_collation='SQL_Latin1_General_CP1_CI_AS')  # Field name made lowercase.
     expira_em = models.DateField(db_column='ExpiraEm')  # Field name made lowercase.
+    hospedado_em = models.ForeignKey(
+        'Hospedagem',
+        models.SET_NULL,  # ou DO_NOTHING / CASCADE
+        db_column='HospedadoEm',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         #managed = False
