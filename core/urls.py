@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('gerenciar/', admin.site.urls),
-    path('/', include('app.urls')),    
+    path('', include('app.urls')),
     path('__reload__/', include('django_browser_reload.urls'))
 ]
 

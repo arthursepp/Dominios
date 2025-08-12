@@ -5,15 +5,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}</title>
+    <title>{% block title %}{% endblock title %}</title>
     {% block styles %}{% endblock styles %}
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.3/dist/tailwind.min.css" rel="stylesheet">
     <!-- Font Awesome Free (latest) CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
 </head>
-<body>    
-    {% block content %}
-    {% endblock content %}        
+<body> 
+    
+    <!-- Sidebar -->
+    <div class="fixed top-0 left-0 h-screen w-64 bg-gray-800 text-white flex flex-col shadow-lg">
+        <div class="p-4 text-2xl font-bold border-b border-gray-700">
+            Consultar domínios
+        </div>
+        <nav class="flex-1 p-4 space-y-2">            
+            {% if current == 'home' or current == 'novo-dominio' or current == 'editar-dominio' %}
+                <a href="{% url 'dominios' %}" class="block px-3 py-2 rounded bg-gray-700">🌐 Domínios</a>
+                {% else %}
+                    <a href="{% url 'dominios' %}" class="block px-3 py-2 rounded hover:bg-gray-700">🌐 Domínios</a>
+            {% endif %}            
+            
+            {% if current == 'clientes' %}
+                <a href="{% url 'clientes' %}" class="block px-3 py-2 rounded bg-gray-700">📄 Clientes</a>
+                {% else %}
+                    <a href="{% url 'clientes' %}" class="block px-3 py-2 rounded hover:bg-gray-700">📄 Clientes</a>      
+            {% endif %}
+
+        </nav>        
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="ml-64 p-6">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>
