@@ -11,3 +11,8 @@ class DominioAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     ...
 
 admin.site.register(models.Dominio, DominioAdmin)
+
+class HospedagemAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    ...
+
+admin.site.register(models.Hospedagem, HospedagemAdmin)
